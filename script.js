@@ -10,12 +10,29 @@ const personalMovieDb = {
 	private: false,
 }
 
-let oneOfTheLastMovies = prompt('Один из последних фильмов?', '')
-let countOfLastMovie = +prompt('На сколько его оцените?')
+let count = 0
 
-personalMovieDb.movies[oneOfTheLastMovies] = countOfLastMovie
+while (count < 2) {
+	let oneOfTheLastMovies = prompt('Один из последних фильмов?', '')
+	if (
+		oneOfTheLastMovies == '' ||
+		oneOfTheLastMovies == null ||
+		oneOfTheLastMovies.length > 50
+	) {
+		continue
+	}
+	let countOfLastMovie = +prompt('На сколько его оцените?')
 
-let oneOfTheLastMovies1 = prompt('Один из последних фильмов?', '')
-let countOfLastMovie1 = +prompt('На сколько его оцените?')
+	personalMovieDb.movies[oneOfTheLastMovies] = countOfLastMovie
 
-personalMovieDb.movies[oneOfTheLastMovies1] = countOfLastMovie1
+	count++
+}
+
+if (personalMovieDb.count <= 10) {
+	console.log('Просмотрено довольно мало фильмов')
+} else if (personalMovieDb.count <= 30) {
+	console.log('Вы классический зритель')
+} else if (personalMovieDb.count > 30) console.log('Вы киноман')
+else {
+	console.log('Произошла ошибка')
+}
